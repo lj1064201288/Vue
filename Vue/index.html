@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>☆★☆★☆★☆★</title>
+<!--    <script src="js/vue.min.js"></script>-->
+</head>
+<body>
+    <div class="app">
+按时发撒身份
+    </div>
+</body>
+<script>
+
+    setInterval(function (){
+        var tit = document.querySelector('title');
+        if (tit.innerHTML == "☆★☆★☆★☆★"){
+            tit.innerHTML = "★☆★☆★☆★☆"
+        }else if(tit.innerHTML == "★☆★☆★☆★☆"){
+            tit.innerHTML = "☆★☆★☆★☆★";
+        }
+    }, 100);
+</script>
+</html>
