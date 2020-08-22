@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阅读条款</title>
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <ul class="banner-list clearfiexd">
+                <li>
+                    <div class="num">1</div>
+                    <div class="banner-text">卡号密码</div>
+                </li>
+                <li>
+                    <div class="num active">2</div>
+                    <div class="banner-text">阅读条款</div>
+                </li>
+                <li>
+                    <div class="num">3</div>
+                    <div class="banner-text">信息填写</div>
+                </li>
+                <li>
+                    <div class="num">4</div>
+                    <div class="banner-text">完成激活</div>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <ul class="card-desc-list">
+                <li>
+                    <div class="card-tit">畅行无忧B卡</div>
+                    <span>面值<b class="price"> 200.00 </b>元</span>
+                </li>
+                <li>
+                    <div class="att">注意 : 18-70岁限激活2分,1-17岁限激活0份</div>
+                </li>
+                <li>
+                    <div class="cove-info">保额信息</div>
+                </li>
+                <li>
+                    <div class="cove-desc">
+                        交通意外身故、伤残最高保险金额&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b class="price">20000.00</b> 元
+                    </div>
+                </li>
+                <li>
+                    <div class="cove-desc">
+                        交通意外医疗最高保险金额&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b class="price">20000.00</b> 元
+                    </div>
+                </li>
+                <li class="clause">
+                    <div class="clause-con">
+                        <p>激活阅读条款</p>
+                        <p>
+                            畅行无忧B卡采用《国寿通泰交通意外伤害保险
+                            (A款) (2013版) 利益条款》、《国寿附加通泰交
+                            通意外费用补偿医疗保险利益条款》、《中国人寿
+                            保险股份有限公司短期保险基本条款》
+                            <span class="desc-lit">
+                            和特别哟定条
+                            款。
+                            </span> 
+                        </p>
+                        <p class="desc-lit">
+                            投保范围:
+                        </p>
+                        <p class="desc-lit">
+                            凡年龄在18周岁至70周岁的身体健康者 ，
+                            均可以作为被保险人, 投保人(激活人)**被保险**须为*****
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div class="ins-cla">
+                        保险条款
+                    </div>
+                </li>
+                <li>
+                    <div class="cla">
+                        <input type="checkbox" class="cla-inp1" id="cla-inp1">
+                        <a href="#">中国人寿保险股份有限公司短期保险基本条款 </a>           
+                    </div>
+                </li>
+                <li>
+                    <div class="cla">
+                        <input type="checkbox" class="cla-inp2" id="cla-inp2">
+                        <a href="#">国寿通泰交通意外伤害保险( A款) ( 2013版)利益条款</a>      
+                    </div>
+                </li>
+                <li>
+                    <div class="cla">
+                        <input type="checkbox" class="cla-inp3" id="cla-inp3">
+                        <a href="#">国寿附加通泰交通意外费用补偿医疗保险利益条款</a>      
+                    </div>
+                </li>
+                <li>
+                    <div class="cla">
+                        <input type="checkbox" class="cla-all" id="cla-all">
+                        阅读全部保险条款
+                    </div>
+                </li>
+                <li>
+                    <div class="statement">
+                        <h6>声明与授权 : </h6>
+                        <p>
+                            投保人本人已阅读本服务卡内容和条款内容，贵公司
+                            已对条款内容履行了说明义务，并对责任免除条款、特别
+                            约定条款、职业除外条款履行了明确说明义务，本人同意
+                            接受并遵守上述内容，自愿投保。 本人谨此授权凡知道或
+                            拥有任何有关本人健康及其它情况的任何医生、医院、保
+                            险公司、其他机构人士，均可将有关资料提供给贵公司。
+                        </p>
+
+                        <a href="javascript:" class="btn btn-success consent" id="consent" disabled="disabled">
+                            我已阅读并同意上述产品内容及相关条款
+                        </a>
+                        <br />
+                        <a href="javascript:" class="btn btn-default exit">
+                            安全退出
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    // 获取所有协议的节点
+    var claInp1 = document.getElementById("cla-inp1");
+    var claInp2 = document.getElementById("cla-inp2");
+    var claInp3 = document.getElementById("cla-inp3");
+    var claAll = document.getElementById("cla-all");
+
+    document.addEventListener("click", function(){
+        if (claInp1.checked && claInp2.checked && claInp3.checked)
+        {
+            claAll.checked = true; 
+        }else {
+            claAll.checked = false; 
+        }
+    })
+
+    // 获取跳转按钮
+    var consent = document.getElementById("consent");
+
+    // 添加同意所有协议按钮
+    function claAllFun() {
+        claAll.addEventListener('click', function(){
+            
+            if (this.checked == true){
+                claInp1.checked = true;
+                claInp2.checked = true;
+                claInp3.checked = true;
+                consent.removeAttribute("disabled");
+            }else if (this.checked == false){
+                claInp1.checked = false;
+                claInp2.checked = false;
+                claInp3.checked = false;
+                consent.setAttribute("disabled", "disabled");
+            }
+            
+        })
+    }
+    claAllFun();
+
+    consent.addEventListener("click", function(){
+        if (this.getAttribute("disabled") == "disabled"){
+            return false;
+        }
+        window.open("enter.html");
+    })
+
+</script>
+</html>

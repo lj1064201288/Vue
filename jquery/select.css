@@ -1,0 +1,50 @@
+﻿.wx-select { display: inline-block;}
+.wx-select-custom { position: relative; display: inline-block; cursor: pointer;}
+.wx-select-custom li,.wx-select-custom ul { margin: 0; padding: 0;}
+.wx-select-custom li { padding-right: 1rem;}
+.wx-select-custom-outer {
+    height: 30px; line-height: 30px; padding: 0 25px 0 5px; border: 1px #ccc solid; border-radius: 5px; position: relative;
+    font-size: 14px;
+}
+.wx-select-custom-outer::after {
+    content:"ˇ";
+    position: absolute;
+    line-height: 1;
+    right: 10px;
+    top: 12px;
+    font-size: 18px;
+}
+
+.wx-select-custom-list {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    top:31px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border: 1px #ccc solid;
+    line-height: 2;
+    width: 100%;
+    background: #fff;
+    z-index: 100;
+    display: none;
+}
+.wx-select-custom-list li {
+    background: #fff;
+    list-style: none;
+    padding-left:5px;
+}
+.wx-select-custom-list li+li { border-top: 1px #ccc solid}
+.wx-select-custom-list li:hover {
+    color:#f00;
+}
+.wx-select-custom-list li.wx-select-selected {
+    color:#f00;
+}
+.wx-select-custom-list.show{
+    display: block;
+}
+.wx-select-system {
+    /* display: none; */
+}

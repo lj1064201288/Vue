@@ -1,0 +1,11 @@
+.my_date{
+	border:#999 1px solid;
+	height:20px;
+	background:#fff url(datePicker.gif) no-repeat right;
+}
+.my_date::-ms-clear{display:none;}
+
+.my_dateFmtErr{
+	font-weight:bold;
+	color:red;
+}

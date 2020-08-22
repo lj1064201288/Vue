@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS库原理</title>
+</head>
+
+<body>
+
+    <div class="box" data-rect="0.2"></div>
+    <div class="box" data-radio="0.5">box2</div>
+
+
+    <script>
+
+        (function (window) {
+
+            function JQ(selector) {
+
+                var _this = this;
+                var el = null;
+
+                if (typeof (selector) === "object") {
+                    el = [selector];
+                } else {
+                    el = document.querySelectorAll(selector);
+                }
+                //eq
+                this.eq = function (index) {
+                    //index严谨性
+                    el = [el[index]];
+
+                    return this;
+                }
+
+                //html
+                this.html = function (str) {
+
+                    //获取
+                    if (str === undefined) {
+                        return el[0].innerHTML;
+                    }
+                    //写入
+                    for (let i = 0; i < el.length; i++) {
+                        el[i].innerHTML = str;
+                    }
+                    return this;
+                }
+                //css
+                this.css = function (option) {
+                    for (let i = 0; i < el.length; i++) {
+                        for (const key in option) {
+                            //{"width":50,"color":"#f00"}
+                            el[i].style[key] = option[key];
+                        }
+                    }
+                    return this;
+                }
+
+                //绑定事件
+                this.on = function (event, fn) {
+
+                    for (let i = 0; i < el.length; i++) {
+
+                        el[i].addEventListener(event, function (e) {
+
+                            //fn里面的this指向el[i]
+                            el[i].a = fn;
+                            el[i].a(e, i, el[i]);
+
+                            //fn(e); 
+                        });
+
+                        //el[i].addEventListener(event, fn);
+                    }
+
+                    return this;
+                }
+
+                //遍历
+                this.each = function (fn) {
+
+                    for (let i = 0; i < el.length; i++) {
+                        el[i].fn = fn;
+                        el[i].fn(el[i], i);
+                    }
+                }
+
+            }
+
+            function instance(selector) {
+                var jqHTML = new JQ(selector);
+                return jqHTML;
+            }
+            
+            //默认
+            window.$ = instance;
+
+            //重命名
+            window.liujingJQRename = function(jname){
+                window[jname] = $;
+            }
+
+        })(window);
+
+        window.liujingJQRename("aajq");
+
+
+        // $(".box").html("修改html").css({"color":"#f00"});
+        console.log(aajq(".box").html());
+
+        $(".box").on("click", function (e, index, item) {
+
+            console.log(e);
+            console.log(this);
+            this.innerHTML = "abc" + index;
+            $(this).html("ccccccc" + index).css({ "color": "#f0f" });
+
+            console.log("abc");
+
+        })
+
+        $(".box").eq(0).html("指定下标处理");
+
+        $(".box").each(function (item, index) {
+            if (index % 2 === 1) {
+                // item.style.background = "#f00";
+                $(item).css({ "background": "#f90" });
+            }
+        })
+    </script>
+
+</body>
+
+</html>

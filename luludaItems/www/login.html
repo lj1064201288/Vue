@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服务卡登录</title>
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/ajaxDome.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <ul class="banner-list clearfiexd">
+                <li>
+                    <div class="num active">1</div>
+                    <div class="banner-text">服务卡登录</div>
+                </li>
+                <li>
+                    <div class="num">2</div>
+                    <div class="banner-text">产看服务卡理赔信息</div>
+                </li>
+            </ul>
+        </div>
+        <div class="row myform">
+            <form action="#" class="log-form" method="post" name="login-form" id="login-form">
+                <div class="card-item">
+                    <input type="text" class="form-control" placeholder="卡号" id="card">
+                </div>
+                <div class="pwd-item">
+                    <input type="password" class="form-control" id="log-pwd" placeholder="密码/身份证号">
+                    <span class="glyphicon glyphicon-eye-close"></span>
+                </div>
+                <div class="ver-item">
+                    <input type="text" class="ver form-control" id="ver" placeholder="验证码">
+                    <img src="validatecode.php" alt="验证码" class="img-ver">
+                </div>
+                <input type="button" class="btn btn-success" value="下一步" id="btn-next">
+            </form>
+        </div>
+    </div>
+</body>
+<script src="js/main.js"></script>
+<script>
+
+</script>
+</html>

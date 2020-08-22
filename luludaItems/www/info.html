@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>投保信息</title>
+    <script src="js/ajaxDome.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="show-status">投保信息</div>
+            <ul class="card-desc-list">
+                <li>
+                    <div class="card-tit">畅行无忧B卡</div>
+                    <span>面值<b class="price"> 100.00 </b>元</span>
+                </li>
+                <li>
+                    <div class="self-card-info">
+                        本人卡号 : <span class="self-card-id">000004</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="self-card-info">
+                        本人激活日期 : <span class="card-create-time">2019-03-12</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="self-card-info">
+                        本人保险生效日期 : <span class="card-take-time">2019-03-14</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="self-card-info">
+                        本人保额信息 :
+                    </div>
+                </li>
+                <li>
+                    <div class="self-cov-info">
+                        交通意外身故、伤残最高保险金额
+                        <span class="self-price">15000.00</span>
+                        元
+                    </div>
+                </li>
+                <li>
+                    <div class="self-cov-info">
+                        交通意外医疗最高保险金额
+                        <span class="self-price">5000.00</span>
+                        元
+                    </div>
+                </li>
+                <li id="change-info-bg">
+                    <div class="change-info">
+                        <ul class="per-btn-list">
+                            <li>
+                                <button class="btn-act applicant">投保人</button>
+                            </li>
+                            <li>
+                                <button class="rec">被保人</button>
+                            </li>
+                            <li>
+                                <button class="ben">受益人</button>
+                            </li>
+                        </ul>
+                        <ul class="self-info">
+                            <li>
+                                <div class="app-name">
+                                    投保人姓名
+                                </div>
+                                <span  class="name">谭昌华</span>
+                            </li>
+                            <li>
+                                <div>
+                                    证件
+                                </div>
+                                <span class="cert">身份证</span>
+                            </li>
+                            <li>
+                                <div>
+                                    证件号码
+                                </div>
+                                <span class="certId">510xxxxxxxxxxx</span>
+                            </li>
+                            <li>
+                                <div>
+                                    性别
+                                </div>
+                                <span class="sex">男</span>
+                            </li>
+                            <li>
+                                <div>
+                                    出生日期
+                                </div>
+                                <span  class="birth">1969-01-01</span>
+                            </li>
+                            <li>
+                                <div>
+                                    电子邮箱
+                                    
+                                </div>
+                                <span  class="self-email"></span>
+                            </li>
+                            <li>
+                                <div>
+                                    手机号
+                                </div>
+                                <span  class="phone">15800000000</span>
+                            </li>
+                            <li>
+                                <div>
+                                    地址
+                                </div>
+                                <span  class="add"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-list">
+                        <a href="javascript:" class="btn btn-success next">查看理赔信息</a>
+                        <a href="#" class="btn btn-default exit">安全退出</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    var cardInfo = JSON.parse(localStorage.getItem("cardInfo"));
+    // 获取页面的显示节点
+    var selfId = document.querySelector(".self-card-id");
+    selfId.innerHTML = cardInfo.cardId;
+    var createTime = document.querySelector(".card-create-time");
+    var scopeTime = document.querySelector(".card-take-time");
+    var payee = document.querySelector(".name");
+    var cert = document.querySelector(".cert");
+    var certId = document.querySelector(".certId");
+    var sex = document.querySelector(".sex");
+    var birth = document.querySelector(".birth");
+    var email = document.querySelector(".self-email");
+    var phone = document.querySelector(".phone");
+    var add = document.querySelector(".add");
+
+    // 获取保人按钮
+    var applicant = document.querySelector(".applicant");
+    var rec = document.querySelector(".rec");
+    var ben = document.querySelector(".ben");
+
+    // 获取下一页节点
+    var next = document.querySelector(".next");
+
+    next.addEventListener("click", function(){
+        window.open("status.html");
+    })
+
+    // 渲染信息函数
+    function showInfo(json){
+        createTime.innerHTML = json.createTime;
+        scopeTime.innerHTML = json.scopeTime;
+        payee.innerHTML = json.payee;
+        cert.innerHTML = json.payeecarttype;
+        certId.innerHTML = json.payeecartNum;
+        sex.innerHTML = json.payeeSex;
+        birth.innerHTML = json.payeebirthday;
+        email.innerHTML = json.payeeemail;
+        phone.innerHTML = json.payeephone;
+        add.innerHTML = json.payeeaddress;
+    }
+
+    AjaxPack({
+        url: 'finddata.php',
+        data: cardInfo,
+        method: "post",
+        asyn: true,
+        success: function(re){
+            var getData = JSON.parse(re); 
+            showInfo(getData);
+            // 添加按钮点击事件
+            applicant.addEventListener("click", function(){
+                if (rec.className.includes("btn-act")){
+                    rec.classList.remove("btn-act");
+                    applicant.classList.add("btn-act");
+                }
+                if (ben.className.includes("btn-act")){
+                    ben.classList.remove("btn-act");
+                    applicant.classList.add("btn-act")
+                }
+                showInfo(getData)
+            });
+            rec.addEventListener("click", function(){
+                console.log(applicant.className.includes("btn-act"));
+                if (applicant.className.includes("btn-act")){
+                    applicant.classList.remove("btn-act");
+                    rec.classList.add("btn-act");
+                }
+                if (ben.className.includes("btn-act")){
+                    ben.classList.remove("btn-act");
+                    rec.classList.add("btn-act");
+                }
+                payee.innerHTML = getData.username;
+                cert.innerHTML = getData.cardType;
+                certId.innerHTML = getData.cardNum;
+                sex.innerHTML = getData.sex;
+                birth.innerHTML = getData.birthday;
+                email.innerHTML = getData.email;
+                phone.innerHTML = getData.phone;
+                add.innerHTML = getData.address;
+            })
+        }
+    })
+
+</script>
+</html>

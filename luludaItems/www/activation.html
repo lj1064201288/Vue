@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卡号激活</title>
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/ajaxDome.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <ul class="banner-list clearfiexd">
+                <li>
+                    <div class="num active">1</div>
+                    <div class="banner-text">卡号密码</div>
+                </li>
+                <li>
+                    <div class="num">2</div>
+                    <div class="banner-text">阅读条款</div>
+                </li>
+                <li>
+                    <div class="num">3</div>
+                    <div class="banner-text">信息录入</div>
+                </li>
+                <li>
+                    <div class="num">4</div>
+                    <div class="banner-text">完成激活</div>
+                </li>
+            </ul>
+        </div>
+        <div class="row myform">
+            <form action="#" class="log-form" method="post" name="login-form" id="login-form">
+                <div class="card-item">
+                    <input type="text" class="form-control" placeholder="卡号" id="card">
+                </div>
+                <div class="pwd-item">
+                    <input type="password" class="form-control" id="log-pwd" placeholder="密码">
+                    <span class="glyphicon glyphicon-eye-close"></span>
+                </div>
+                <div class="ver-item">
+                    <input type="text" class="ver form-control" id="ver" placeholder="验证码">
+                    <img src="validatecode.php" alt="验证码" class="img-ver">
+                </div>
+                <input type="button" class="btn btn-success" value="下一步" id="btn-next">
+                
+            </form>
+        </div>
+    </div>
+</body>
+<script src="js/main.js?"></script>
+</html>

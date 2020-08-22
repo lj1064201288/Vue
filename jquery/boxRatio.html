@@ -1,0 +1,534 @@
+<DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="author" content="万息岗前集训中心">
+        <title>boxRatio</title>
+    </head>
+    <style>
+        html,
+        body,
+        ul,
+        li,
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #f9f9f9;
+        }
+
+        footer {
+            margin-bottom: 20px;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        section {
+            margin: 0 20px;
+        }
+
+        .section-tit {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .section-main {
+            background: #fff;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: 1px #f2f2f2 solid;
+            padding: 5px 10px;
+        }
+
+        .chapter-tit {
+            font-size: 1rem;
+            line-height: 1rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 15px;
+            line-height: 1.4;
+            min-width: 500px;
+            overflow-x: auto;
+        }
+
+        pre.code .note {
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .code .focus {
+            background: rgb(255, 242, 171);
+            border-radius: 5px;
+            padding: 0 5px;
+            display: inline-block;
+        }
+
+        .code::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #f5f5f5;
+        }
+
+        .code::-webkit-scrollbar-track {
+            border-radius: 4px;
+            background-color: #f5f5f5;
+        }
+
+        .code::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: #555;
+        }
+
+        .box-ratio {
+            width: 100%;
+            height: 50px;
+            background: #ddd;
+            margin-top: 5px;
+        }
+
+        
+    </style>
+    <body>
+
+        <section>
+            <h2 class="section-tit">用JS控制盒子显示比例</h2>
+
+            <div class="section-main">
+                <h2 class="chapter-tit">图例</h2>
+                <div class="box-ratio box-ratio0">5:1</div>
+                <h2 class="chapter-tit">第一步：</h2>
+                <div class="section-main">
+                    <pre class="code">
+<span class="note">//获取对象</span>
+var ratioBox = document.getElementsByClassName("box-ratio")[0];
+
+<span class="note">//获取对象已知宽</span>
+var ratioBoxWidth = ratioBox.clientWidth;
+
+<span class="note">//设置对象高</span>
+ratioBox.style.height = ratioBoxWidth * 0.2;
+
+</pre>
+                </div>
+                <h2 class="chapter-tit">第二步：</h2>
+                <div class="section-main">
+
+                    <pre class="code">
+<span class="note">//监听窗口变化</span>
+window.addEventListener("resize",function(){
+    var ratioBox = document.getElementsByClassName("box-ratio")[0];
+    var ratioBoxWidth = ratioBox.clientWidth;
+    ratioBox.style.height = ratioBoxWidth * 0.2;
+})
+</pre>
+                </div>
+        </section>
+        <script>
+            //获取对象
+            var ratioBox = document.getElementsByClassName("box-ratio0")[0];
+
+            //获取对象已知宽
+            var ratioBoxWidth = ratioBox.clientWidth;
+
+            //设置对象高
+            ratioBox.style.height = ratioBoxWidth * 0.2;
+
+            //监听窗口变化
+            window.addEventListener("resize", function () {
+                var ratioBox = document.getElementsByClassName("box-ratio0")[0];
+                var ratioBoxWidth = ratioBox.clientWidth;
+                ratioBox.style.height = ratioBoxWidth * 0.2;
+            })
+        </script>
+
+        <section>
+            <h2 class="chapter-tit">函数化：</h2>
+            <div class="section-main">
+                <div class="box-ratio boxratio1">5:1</div>
+                <pre class="code">
+HTML:
+&lt;div class=&quot;box-ratio&quot; data-ratio=&quot;0.05&quot;&gt;20:1&lt;/div&gt;
+&lt;div class=&quot;box-ratio&quot; data-ratio=&quot;0.2&quot;&gt;5:1&lt;/div&gt;
+
+function setBoxByRatio(){
+    <span class="note">//获取对象</span>
+    var ratioBox = document.getElementsByClassName("box-ratio")[0];
+    <span class="note">//获取对象已知宽</span>
+    var ratioBoxWidth = ratioBox.clientWidth;
+    <span class="note">//设置对象高</span>
+    ratioBox.style.height = ratioBoxWidth * 0.2;
+}
+<span class="note">//页面加载初始化</span>
+setBoxByRatio();
+<span class="note">//监听窗口尺寸变化</span>
+window.addEventListener("resize",function(){
+    setBoxByRatio();
+}
+</pre>
+            </div>
+        </section>
+        <script>
+            function setBoxByRatio1() {
+                //获取对象
+                var ratioBox = document.getElementsByClassName("boxratio1")[0];
+                //获取对象已知宽
+                var ratioBoxWidth = ratioBox.clientWidth;
+                //设置对象高
+                ratioBox.style.height = ratioBoxWidth * 0.2;
+            }
+            //页面加载初始化
+            setBoxByRatio1();
+            //监听窗口尺寸变化
+            window.addEventListener("resize", function () {
+                setBoxByRatio1();
+            });
+        </script>
+        <section>
+            <h2 class="chapter-tit">批量化</h2>
+            <div class="section-main">
+                <div class="box-ratio boxratio2" data-ratio="0.1">10:1</div>
+                <div class="box-ratio boxratio2" data-ratio="0.05">20:1</div>
+                <pre class="code">
+HTML:
+&lt;div class=&quot;box-ratio&quot; data-ratio=&quot;0.1&quot;&gt;10:1&lt;/div&gt;
+&lt;div class=&quot;box-ratio&quot; data-ratio=&quot;0.05&quot;&gt;20:1&lt;/div&gt;
+
+JS:
+function setBoxByRatio(el,dataRatio){
+    <span class="note">//获取对象</span>
+    var ratioBox = el;
+    <span class="note">//获取对象已知宽</span>
+    var ratioBoxWidth = ratioBox.clientWidth;
+    <span class="note">//设置对象高</span>
+    ratioBox.style.height = ratioBoxWidth * dataRatio;
+}
+<span class="note">//获取所有需要控制比例的对象</span>
+var ratioBoxs = document.getElementsByClassName("box-ratio");
+
+<span class="note">//遍历所有对象</span>
+for(let i=0; i < ratioBoxs.length; i++){
+    <span class="note">//获取比例值</span>
+    let r = ratioBoxs[i].getAttribute("data-ratio");
+    <span class="note">//初始化</span>
+    setBoxByRatio(ratioBoxs[i],r);
+    <span class="note">//监听窗口尺寸变化</span>
+    window.addEventListener("resize",function(){
+        setBoxByRatio(ratioBoxs[i],r);
+    });
+}
+</pre>
+            </div>
+        </section>
+        <script>
+            function setBoxByRatio2(el,dataRatio){
+                //获取对象
+                var ratioBox = el;
+                //获取对象已知宽
+                var ratioBoxWidth = ratioBox.clientWidth;
+                //设置对象高
+                ratioBox.style.height = ratioBoxWidth * dataRatio;
+            }
+
+            var ratioBoxs2 = document.getElementsByClassName("boxratio2");
+
+            for(let i=0; i < ratioBoxs2.length; i++){
+                //获取比例值
+                let r = ratioBoxs2[i].getAttribute("data-ratio");
+                //初始化
+                setBoxByRatio2(ratioBoxs2[i],r);
+                //监听窗口尺寸变化
+                window.addEventListener("resize",function(){
+                    setBoxByRatio2(ratioBoxs2[i],r);
+                });
+            }
+
+        </script>
+        <section>
+            <h2 class="chapter-tit">对象化</h2>
+            <div class="section-main">
+                <div class="box-ratio boxratio3" data-ratio="0.05">20:1</div>
+                <div class="box-ratio boxratio3" data-ratio="0.1">10:1</div>
+                <pre class="code">
+HTML:
+&lt;div class=&quot;box-ratio&quot; data-ratio=&quot;0.05&quot;&gt;20:1&lt;/div&gt;
+&lt;div class=&quot;box-ratio&quot; data-ratio=&quot;0.1&quot;&gt;10:1&lt;/div&gt;
+<span class="note">
+/*
+ * 设置盒子按比例显示
+ * 构造函数 setBoxRatio()
+ */</span>
+function setBoxRatio(option){
+    
+    var _this = this;
+    <span class="note">//默认值</span>
+    this.el = "box-ratio";
+    this.ratio = null;
+    this.attr = "data-ratio";
+    <span class="note">//对比传入值</span>
+    option.el ? this.el = option.el : "";
+    option.ratio ? this.ratio = option.ratio : "";
+    option.attr ? this.attr = option.attr : "";
+
+    <span class="note">//获取所有对象</span>
+    this.items = document.querySelectorAll(this.el);
+    if(!this.items||this.items=="undfined"){return false;}
+
+    <span class="note">//设置对象高</span>
+    this.setHeight = function(el,ratio){
+        <span class="note">//获取对象已知宽</span>
+        var boxWidth = el.clientWidth;
+        <span class="note">//设置对象高</span>
+        el.style.height = boxWidth * ratio;
+    }
+
+    <span class="note">//总体控制</span>
+    this.control = function(){
+
+        <span class="note">//统一设置比例</span>
+        let r = this.ratio;
+
+        for(let i=0; i < this.items.length; i++){
+            <span class="note">//通过属性获取比例值</span>
+            if(this.ratio==null){
+                    r = this.items[i].getAttribute(this.attr);
+            }
+            <span class="note">//初始化设置</span>
+            this.setHeight(this.items[i],r);
+            <span class="note">//监听窗口尺寸变化</span>
+            window.addEventListener("resize",function(){
+                _this.setHeight(_this.items[i],r);
+            });
+        } 
+    }
+    <span class="note">//运行</span>
+    this.control();
+}
+
+<span class="note">//实例化</span>
+var boxRatio = new setBoxRatio({
+    el: ".box-ratio",
+    attr: "data-ratio",
+    ratio: 0.1<span class="note">//如果ratio设值，attr将失效</span>
+});
+</pre>
+            </div>
+        </section>
+        <script>
+            /*
+             * 设置盒子按比例显示
+             * 构造函数 setBoxRatio()
+             */
+            function setBoxRatio(option) {
+
+                var _this = this;
+                //默认值
+                this.el = "box-ratio";
+                this.ratio = null;
+                this.attr = "data-ratio";
+                //对比传入值
+                option.el ? this.el = option.el : "";
+                option.ratio ? this.ratio = option.ratio : "";
+                option.attr ? this.attr = option.attr : "";
+
+                //获取所有对象
+                this.items = document.querySelectorAll(this.el);
+                if (!this.items || this.items == "undfined") { return false; }
+
+                //设置对象高
+                this.setHeight = function (el, ratio) {
+                    //获取对象已知宽
+                    var boxWidth = el.clientWidth;
+                    //设置对象高
+                    el.style.height = boxWidth * ratio;
+                }
+
+                //总体控制
+                this.control = function () {
+
+                    //统一设置比例
+                    let r = this.ratio;
+
+                    for (let i = 0; i < this.items.length; i++) {
+                        //通过属性获取比例值
+                        if (this.ratio == null) {
+                            r = this.items[i].getAttribute(this.attr);
+                        }
+                        //初始化设置
+                        this.setHeight(this.items[i], r);
+                        //监听窗口尺寸变化
+                        (function(r){
+                            window.addEventListener("resize", function () {
+                                _this.setHeight(_this.items[i], r);
+                            })
+                        })(r);  
+                    }
+                }
+
+                //运行
+                this.control();
+
+            }
+
+            //实例化
+            var boxRatio = new setBoxRatio({
+                el: ".boxratio3",
+                attr: "data-ratio",
+                //ratio: 0.1//如果ratio设值，attr将失效
+            });
+
+        </script>
+
+
+        <section>
+            <h2 class="chapter-tit">优化代码</h2>
+            <div class="section-main">
+                <div class="box-ratio boxratio4" data-ratio="0.05">20:1</div>
+                <div class="box-ratio boxratio4" data-ratio="0.2">5:1</div>
+                <pre class="code">
+HTML:
+&lt;div class=&quot;box-ratio&quot; data-ratio=&quot;0.05&quot;&gt;20:1&lt;/div&gt;
+&lt;div class=&quot;box-ratio&quot; data-ratio=&quot;0.2&quot;&gt;5:1&lt;/div&gt;
+
+<span class="note">/*
+ * 设置盒子按比例显示
+ * 构造函数 WidthBoxRatio()
+ */</span>
+function WidthBoxRatio(option) {
+    var _this = this;
+    <span class="note">//默认值</span>
+    this.el = "box-ratio";
+    this.ratio = null;
+    this.attr = "data-ratio";
+    <span class="note">//对比传入值</span>
+    option.el ? this.el = option.el : "";
+    option.ratio ? this.ratio = option.ratio : "";
+    option.attr ? this.attr = option.attr : "";
+
+    <span class="note">//获取所有对象</span>
+    this.items = document.querySelectorAll(this.el);
+    if (!this.items || this.items == "undfined") { return false; }
+
+    <span class="note">//运行</span>
+    this.control();
+}
+WidthBoxRatio.prototype.setHeight = function (el, ratio) {
+    <span class="note">//设置对象高</span>
+    this.setHeight = function (el, ratio) {
+        <span class="note">//获取对象已知宽</span>
+        var boxWidth = el.clientWidth;
+        <span class="note">//设置对象高</span>
+        el.style.height = boxWidth * ratio;
+    }
+}
+WidthBoxRatio.prototype.control = function () {
+    var _this = this;
+    let r = this.ratio;
+
+    for (let i = 0; i < this.items.length; i++) {
+        <span class="note">//通过属性获取比例值</span>
+        if (this.ratio == null) {
+            r = this.items[i].getAttribute(this.attr);
+        }
+        <span class="note">//初始化设置</span>
+        this.setHeight(this.items[i], r);
+        <span class="note">//监听窗口尺寸变化</span>
+        (function(r){
+            window.addEventListener("resize", function () {
+                console.log(r);
+                _this.setHeight(_this.items[i], r);
+            });
+        })(r);
+    }
+}
+
+<span class="note">//实例化</span>
+var widthboxRatio = new WidthBoxRatio({
+    el: ".box-ratio",
+    attr: "data-ratio"
+});
+
+        </pre>
+            </div>
+        </section>
+        <script>
+            /*
+             * 设置盒子按比例显示
+             * 构造函数 WidthBoxRatio()
+             */
+            function WidthBoxRatio(option) {
+                var _this = this;
+                //默认值
+                this.el = "box-ratio";
+                this.ratio = null;
+                this.attr = "data-ratio";
+                //对比传入值
+                option.el ? this.el = option.el : "";
+                option.ratio ? this.ratio = option.ratio : "";
+                option.attr ? this.attr = option.attr : "";
+
+                //获取所有对象
+                this.items = document.querySelectorAll(this.el);
+                if (!this.items || this.items == "undfined") { return false; }
+
+                //运行
+                this.control();
+            }
+            WidthBoxRatio.prototype.setHeight = function (el, ratio) {
+                //设置对象高
+                this.setHeight = function (el, ratio) {
+                    //获取对象已知宽
+                    var boxWidth = el.clientWidth;
+                    //设置对象高
+                    el.style.height = boxWidth * ratio;
+                }
+            }
+            WidthBoxRatio.prototype.control = function () {
+                var _this = this;
+                let r = this.ratio;
+
+                for (let i = 0; i < this.items.length; i++) {
+                    //通过属性获取比例值
+                    if (this.ratio == null) {
+                        r = this.items[i].getAttribute(this.attr);
+                    }
+                    //初始化设置
+                    this.setHeight(this.items[i], r);
+                    //监听窗口尺寸变化
+                    (function(r){
+                        window.addEventListener("resize", function () {
+                            _this.setHeight(_this.items[i], r);
+                        });
+                    })(r); //使用闭包传值
+                }
+            }
+
+            //实例化
+            var widthboxRatio = new WidthBoxRatio({
+                el: ".boxratio4",
+                attr: "data-ratio"
+            });
+            
+        </script>
+
+        <footer></footer>
+    </body>
+
+    </html>

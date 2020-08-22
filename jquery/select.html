@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>插件select</title>
+    <link rel="stylesheet" href="select.css">
+
+</head>
+
+<body>
+
+    <div class="wx-select myselector" id="selector1">
+        <select class="wx-select-system">
+            <option value="HTML">HTML基础及H5标签</option>
+            <option value="CSS">CSS基础及CSS3</option>
+            <option value="JS">JS基础及自写插件</option>
+            <option value="JQ">JQ框架使用</option>
+        </select>
+    </div>
+
+    <div class="wx-select myselector" id="selector2">
+        <select class="wx-select-system">
+            <option value="HTML">HTML基础及H5标签</option>
+            <option value="CSS">CSS基础及CSS3</option>
+            <option value="JS">JS基础及自写插件</option>
+            <option value="JQ">JQ框架使用</option>
+        </select>
+    </div>
+
+    <div class="wx-select" id="selector3">
+        <select class="wx-select-system">
+            <option value="HTML">HTML基础及H5标签</option>
+            <option value="CSS">CSS基础及CSS3</option>
+            <option value="JS">JS基础及自写插件</option>
+            <option value="JQ">JQ框架使用</option>
+        </select>
+    </div>
+
+
+    <script src="select1.0.js"></script>
+    <script src="select1.1.js"></script>
+    <script>
+        //select1.0
+        WXSelect({el:".myselector"});
+ 
+        //select1.1
+        var newSelector2 = new wxSelector({el:"#selector3"});
+
+    </script>
+
+</body>
+
+</html>

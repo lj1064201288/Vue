@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <title>理赔状态列表</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="show-status">理赔状态列表</div>
+        </div>
+        <div class="card-id">
+            卡号 : <span>519400001195</span>
+        </div>
+        <div class="cl-info">
+            暂无理赔信息
+        </div>
+        <div class="btn-list">
+            <a href="#" class="btn btn-success next">查看投保信息</a>
+            <a href="#" class="btn btn-default exit">安全退出</a>
+        </div>
+    </div>
+</body>
+<script>
+    var cardInfo = JSON.parse(localStorage.getItem("cardInfo"));
+    // 获取页面的显示节点
+    var selfId = document.querySelector(".card-id span");
+    selfId.innerHTML = cardInfo.cardId;
+
+    // 获取下一页节点
+    var next = document.querySelector(".next");
+
+    next.addEventListener("click", function(){
+        window.open("info.html");
+    })
+
+</script>
+</html>

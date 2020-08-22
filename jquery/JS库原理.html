@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS库原理</title>
+    <link rel="stylesheet" href="highlight/atom-one-dark.css">
+    <script src="highlight/highlight.pack.js"></script>
+    <link rel="stylesheet" href="highlight/main.css">
+    <script src="wxJQuery.js"></script>
+</head>
+
+<body>
+    <header>
+        <svg class="v-align" version="1.1" id="Layer_1" x="0px" y="0px" width="53px" height="30px" viewBox="0 0 53 30"
+            enable-background="new 0 0 53 35" xml:space="preserve">
+            <image id="image0" width="53" height="30" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAAAjCAMAAAADt7LEAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+      AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABRFBMVEX/////oQH/oQH/oQH/
+      oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/
+      oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/
+      oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/
+      oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/
+      oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH/
+      oQH/oQH/oQH/oQH/oQH/oQH/oQH/oQH///9oy1WeAAAAanRSTlMAClRAm+8EMovp7Wjl6zZwbJfj
+      iTwcAoHbfC4GIq9+Tl4oUoW13c2pXCAmZLPfy2LPEoMQ4dORNJPRrQx2BaCx8wEwDbqdA5XX0DUU
+      n0RW1aGHDgjBuZm9v0xgehgWyT4kHkiNeFCno6UqfcpcCgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAA
+      CxMAAAsTAQCanBgAAAAHdElNRQfkAx0CHC/q8LLMAAAB1klEQVQ4y52U51rCMBSGD2CKRItaEVAU
+      J+LCRQX3Vlw4cO8NmPu/ANMlTRqq9fzIkybn7XdGEoDfzef/gxNngQaEJG9IsBGFCMGemKZmRDST
+      vUBhmRiGvFAt5D9UqwW1eaaQ0h5wbkWCHdE6VIygeGeXYznRHQSaMYr3JHu7nVRfrJ9b6R8YHEph
+      EoJhM3gcSo+MusU7Nj6BjUaQDEySmsmpqXpMshnX/JQfLcOmYUZpD7NAeDaVBdnupcIcQ/WAjwaL
+      c0ELyc/LNKwoTNu9MrDAUIuwZGSpLtMTu7Iq65lgif25wmmtmdT66MYmwFbXtnU2GC2V0zIovLO1
+      W9gD2D+QDo+01ji0BBT2Q5HOAehQhGM9r5NftWhA2KLonIolWDeeOtW1dH9ijVhAsf1q1PNiKTpI
+      7tQZlERUlK0GT+WEFF9DlW0EaRNGSBNdcKMKQgqdw4VbhGItWsNLN62retS1OyWsoQQ3di/+zIu1
+      cILPi6VOtPvlrAZAiKUyti90eQtZkdYS3F1ge4RWwPjmPq89cQ+ivB7phi8SezJfGwXCdCY/xZ7P
+      zSv/gp2U/Gpult7e41jveuTjs2R/XObTZYB0pZIGKFer2lgu2PcPRz6+vLzgNfsGB5x55yk8oisA
+      AAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDMtMjhUMTg6Mjg6NDcrMDg6MDAACzxmAAAAJXRFWHRk
+      YXRlOm1vZGlmeQAyMDIwLTAzLTI4VDE4OjI4OjQ3KzA4OjAwcVaE2gAAAABJRU5ErkJggg==" />
+        </svg>
+        万息岗前集训中心-专注项目经验提升
+
+    </header>
+
+    <div class="wrap">
+        <h1 class="h1">Javascript库原理</h1>
+        <p>使用构造函数，封装所有Javascript基础API、扩展API</p>
+
+        <pre><code>
+//使用闭包，防止与外部命名冲突
+(function (window) {
+    /*
+     * 构造函数主体
+     */
+    function wxJQuery(selector) {
+        //通过参数获取元素对象集合
+        this.el = document.querySelectorAll(selector);
+    };
+
+    /*
+     * 使用原型链设置方法，可以节约空间。
+     */
+    //html操作
+    wxJQuery.prototype.html = function (val) {
+
+        for (let i = 0; i < this.el.length; i++) {
+            //对获取到的每一个元素设置innerHTML
+            this.el[i].innerHTML = val;
+
+        }
+    }
+
+    /*
+     * 实例化
+     */
+    function instance(selector) {
+
+        return new wxJQuery(selector);
+
+    }
+
+    //将$赋值为实例化函数
+    window.$ = instance;
+
+})(window);
+//直接传window提高性能，不用每次通过作用域链找到顶层。
+    </code></pre>
+        <h3 class="h3">HTML代码</h3>
+        <pre><code>&lt;div class="box"&gt;产品1&lt;/div&gt;
+&lt;div class="box"&gt;产品2&lt;/div&gt;</code></pre>
+        <h3 class="h3">JS调用</h3>
+        <pre><code>//调用
+$(".box").html("新产品");
+</code></pre>
+
+        <h2 class="h2">wxJQuery.prototype.html 获取与写入</h2>
+        <blockquote class="notice">1、wxJQuery.prototype.html()获取;<br>
+            2、wxJQuery.prototype.html("写入值");
+        </blockquote>
+
+        <pre><code>wxJQuery.prototype.html = function (val) {
+
+    if (val) { //有值就设置每一个元素的内容
+
+        for (let i = 0; i < this.el.length; i++) {
+
+            this.el[i].innerHTML = val;
+
+        }
+
+    } else { //没值就获取第一个元素的内容
+
+        return this.el[0].innerHTML;
+    }
+}</code></pre>
+        <h3 class="h3">JS调用</h3>
+        <pre><code>//获取值
+var strHTML = $(".box").html();
+
+//设置值
+$(".box").html("新产品");
+
+</code></pre>
+
+        <!-- CSS -->
+        <h2 class="h2">wxJQuery.prototype.css写入</h2>
+        <blockquote class="notice">1、wxJQuery.prototype.css({"color":"#f00","fontSize":"24px"})
+        </blockquote>
+
+        <pre><code>wxJQuery.prototype.css = function (option) {
+
+    for (let i = 0; i < this.el.length; i++) {
+
+        //把传入的属性依次设置到元素的style上
+        for (const key in option) {
+            if (option.hasOwnProperty(key)) {
+                this.el[i].style[key] = option[key];
+            }
+        }
+
+    }
+}</code></pre>
+        <h3 class="h3">JS调用</h3>
+        <pre><code>//设置样式
+$(".box").css({"color":"#f00","fontSize":"24px"});
+</code></pre>
+        <!-- 链式调用 -->
+        <h2 class="h2">链式调用</h2>
+        <blockquote class="notice"> $(".box").html("页面内容").css({"color":"#f00");<br>
+            如果想链式调用，那每个方法执行后应该返回对象本身。
+        </blockquote>
+        <pre><code>wxJQuery.prototype.html = function (val) {
+
+    if (val) { //有值就设置每一个元素的内容
+
+        for (let i = 0; i < this.el.length; i++) {
+
+            this.el[i].innerHTML = val;
+
+        }
+
+        return this; //可供链式调用
+
+    } else { //没值就获取第一个元素的内容
+
+        return this.el[0].innerHTML;
+    }
+}
+    
+wxJQuery.prototype.css = function (option) {
+
+    for (let i = 0; i < this.el.length; i++) {
+
+        //把传入的属性依次设置到元素的style上
+        for (const key in option) {
+            if (option.hasOwnProperty(key)) {
+                this.el[i].style[key] = option[key];
+            }
+        }
+
+    }
+
+    return this; //可供链式调用
+
+}</code></pre>
+
+        <!-- 绑定事件 -->
+        <h2 class="h2">绑定事件</h2>
+        <blockquote class="notice"> $(".box").on("click",function(e){});<br>
+            绑定事件后的this指向问题：this谁调用指向谁。
+        </blockquote>
+        <pre><code>//事件操作
+wxJQuery.prototype.on = function (ev, fn) {
+
+    for (let i = 0; i < this.el.length; i++) {
+
+        this.el[i].addEventListener(ev, function (e) {
+
+            //如果直接执行 fn()，那fn里面的this指向的就是window，无法指向事件所对应的元素
+
+            //把回调函数fn赋值给this.fn
+            this.fn = fn; 
+
+            //由this(即this.el[i])来执行调用
+            this.fn(e); //那fn里面的this就指的事件的对象this.el[i]。
+
+        });
+
+    }
+
+    return this; //链式调用
+
+}</code></pre>
+        <h3 class="h3">调用</h3>
+        <pre><code>//事件绑定
+$(".box").on("click", function(){
+    /*
+    this 此处的this是事件发生的对象
+    
+    但是这里的this指向的元素是 $(".box")获取的元素，并不具备wxJQuery的属性和方法
+    
+    接下来就使用$(this)返回当前对象的wxJQuery实例,就可以使用wxJQuery方法
+    
+    $(this)相当于针对this又实例化了一个wxJQuery对象,把实例里面的this.el直接变成了this
+    */
+})    
+</code></pre>
+        <pre><code>//通过参数获取元素对象集合
+//this.el = document.querySelectorAll(selector); 做如下调整
+
+//如果参数是对象,直接使用对象
+if (typeof (selector) === "object") {
+
+    this.el = [selector]; //集合，因为使用方法的时候，都是用的for遍历的元素对象。
+
+} else {
+
+    //通过参数获取元素对象
+    this.el = document.querySelectorAll(selector); //集合
+
+}
+</code></pre>
+
+        <!-- 指定某个 -->
+        <h2 class="h2">指定获取的元素中某个具体元素</h2>
+        <blockquote class="notice"> $(".box").eq(0);</blockquote>
+        <pre><code>//指定某个索引的元素
+wxJQuery.prototype.eq = function(index){
+
+    if(isNaN(index)){index = 0;} //下标非数字处理
+
+    index = parseInt(index); //转为数字
+
+    if(index < 0 ){ index = 0; } //下标向左越界处理
+
+    if(index > this.el.length ){ index = this.el.length; } //下标向右越界处理
+
+    this.el = [this.el[index]]; //集合
+
+    return this; //链式调用
+
+}
+</code></pre>
+
+        <!-- 遍历 -->
+        <h2 class="h2">遍历对象</h2>
+        <blockquote class="notice"> $(".box").each(function(item,index){});</blockquote>
+        <pre><code>//指定某个索引的元素
+wxJQuery.prototype.each = function(fn){
+
+    for (let i = 0; i < this.el.length; i++) {
+        
+        this.el[i].fn = fn;
+        //使用this.el[i]执行调用fn,fn里面的this就指向的this.el[i]
+        this.el[i].fn(this.el[i],i);
+    }
+    
+    return this  //链式调用;
+    
+}
+</code></pre>
+<div class="box">1</div>
+<div class="box">2</div>
+<script>
+    $(".box").each(function (item, index) {
+
+        //each内部已经把this指向到对应的元素，可直接使用this
+        $(this).css({ "color": "#f00" });
+
+        //item是回调回来的对应的元素，可直接使用
+        $(item).css({ "color": "#f00" });
+
+    })
+</script>
+<pre><code>
+&lt;div class="box"&gt;1&lt;/div&gt;
+&lt;div class="box"&gt;2&lt;/div&gt;
+&lt;script&gt;
+    $(".box").each(function (item, index) {
+
+        //each内部已经把this指向到对应的元素，可直接使用this
+        $(this).css({ "color": "#f00" });
+
+        //item是回调回来的对应的元素，可直接使用
+        $(item).css({ "color": "#f00" });
+        
+    })
+&lt;/script&gt;
+</code></pre>
+
+    </div><!-- wrap end -->
+    
+    
+</body>
+
+</html>

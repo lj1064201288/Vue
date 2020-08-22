@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息录入</title>
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/ajaxDome.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <ul class="banner-list clearfiexd">
+                <li>
+                    <div class="num">1</div>
+                    <div class="banner-text">卡号密码</div>
+                </li>
+                <li>
+                    <div class="num">2</div>
+                    <div class="banner-text">阅读条款</div>
+                </li>
+                <li>
+                    <div class="num active">3</div>
+                    <div class="banner-text">信息填写</div>
+                </li>
+                <li>
+                    <div class="num">4</div>
+                    <div class="banner-text">完成激活</div>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="enter">
+                <div class="card-id">
+                    卡号 : <span>519400001195</span>
+                </div>
+                <div class="card-scope">
+                    被保人年龄区间 : 18至70周岁
+                </div>
+            </div>
+            <form action="#" method="post" class="enter-info" id="enter-info">
+                <div class="form-tit">
+                    投保人信息
+                </div>
+                <div class="input-group">
+                    <label for="username" class="control-label">姓名 </label>
+                    <input type="text" class="form-control username" id="username" name="username">
+                </div>
+                <div class="input-group">
+                    <label for="cert-type" class="control-label">证件类型</label>
+                    <select name="cert-type" id="cert-type" class="form-control cert-type" >
+                        <option value="1">身份证</option>
+                        <option value="2">护照</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="cert-num" class="control-label">证件号码 </label>
+                    <input type="text" class="form-control cert-num" id="cert-num" name="cert-num">
+                </div>
+                <div class="input-group">
+                    <label for="sex" class="control-label">性别</label>
+                    <input type="radio" class="sex" id="man" name="sex" checked value="1"> 男
+                    <input type="radio" class="sex" id="woman" name="sex" value="2"> 女
+                </div>
+                <div class="input-group">
+                    <label for="birthday" class="control-label">出生日期</label>
+                    <input type="date" class="form-control birthday" id="birthday" name="birthday"> 
+                </div>
+                <div class="cart-desc-age">
+                    本卡生效年龄<span class="age">&nbsp;&nbsp;&nbsp;</span>周岁
+                </div>
+                <div class="input-group">
+                    <label for="email" class="control-label">电子邮箱 </label>
+                    <input type="email" class="form-control email" id="email" name="email">
+                </div>
+                <div class="input-group">
+                    <label for="phone" class="control-label">手机号码 </label>
+                    <input type="text" class="form-control phone" id="phone" name="phone">
+                </div>
+                <div class="input-group">
+                    <label for="address" class="control-label">联系地址 </label>
+                    <input type="text" class="form-control address" id="address" name="address">
+                </div>
+                <div class="form-tit">
+                    被保人信息
+                </div>
+                <div class="input-group">
+                    <label for="payee-judge" class="control-label">是投保人</label>
+                    <select name="payee-judge" id="payee-judge" class="form-control">
+                        <option value="0">子女</option>
+                        <option value="1">本人</option>
+                        <option value="2">被监护人</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="payee" class="control-label">姓名</label>
+                    <input type="text" id="payee" name="payee" class="form-control payee">
+                </div>
+                <div class="input-group">
+                    <label for="payee-cert-type" class="control-label">证件类型</label>
+                    <select name="payee-cert-type" id="payee-cert-type" class="form-control payee-cert-type">
+                        <option value="1">身份证</option>
+                        <option value="2">护照</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="payee-cert-num" class="control-label">证件号码 </label>
+                    <input type="text" class="form-control payee-cert-num" id="payee-cert-num" name="payee-cert-num">
+                </div>
+                <div class="input-group">
+                    <label for="payee-sex" class="control-label">性别</label>
+                    <input type="radio" class="payee-sex" id="payee-man" name="payee-sex" checked value="1"> 男
+                    <input type="radio" class="payee-sex" id="payee-woman" name="payee-sex" value="2"> 女
+                </div>
+                <div class="input-group">
+                    <label for="payee-birthday" class="control-label">出生日期</label>
+                    <input type="date" class="form-control payee-birthday" id="payee-birthday" name="payee-birthday"> 
+                </div>
+                <div class="cart-desc-age">
+                    本卡生效年龄<span class="payee-age">&nbsp;&nbsp;&nbsp;</span>周岁
+                </div>
+                <div class="input-group">
+                    <label for="payee-email" class="control-label">电子邮箱 </label>
+                    <input type="email" class="form-control payee-email" id="payee-email" name="payee-email">
+                </div>
+                <div class="input-group">
+                    <label for="payee-phone" class="control-label">手机号码 </label>
+                    <input type="text" class="form-control payee-phone" id="payee-phone" name="payee-phone">
+                </div>
+                <div class="input-group">
+                    <label for="payee-address" class="control-label">联系地址 </label>
+                    <input type="text" class="form-control payee-address" id="payee-address" name="payee-address">
+                </div>
+                <div class="form-tit">
+                    受益人信息
+                </div>
+                <div class="payee-desc">
+                    受益人为法律继承人
+                </div>
+                <div class="dateline">
+                    <div class="date-scope">
+                        生效期限选择: <span class="timestart"></span> 至 <span class="timeend"></span>
+                    </div>  
+                    <div class="input-group">
+                        <label for="scope-dete">生效日期</label>
+                        <input type="date" class="form-control scope-dete" id="scope-dete" name="scope-dete">
+                    </div>
+                </div>
+                <div class="btn-list">
+                    <a href="javascript:" class="btn btn-success" id="btn-next" disabled>下一步</a>
+                    <a href="#" class="btn btn-default exit">安全退出</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="js/enter.js"></script>
+</html>

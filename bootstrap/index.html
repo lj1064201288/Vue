@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bootstrap</title>
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>bootstrap表单</h2>
+        <div class="form">
+            <form action="javascript:" name="myform" class="form-horizontal" id="myform">
+                <div class="form-group">
+                    <label for="name" class="label-info control-label">
+                        用户名: 
+                    </label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
+                </div>
+                <div class="form-group">
+                    <label for="pwd" class="label-primary control-label">
+                        密码: 
+                    </label>
+                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="请输入密码">
+                </div>
+                <div class="form-group">
+                    <label for="sex" class="label-success">
+                        性别:
+                    </label>
+                    <div class="radio-inline">
+                        <label class="radio-inline control-label">
+                            <input type="radio" id="man" name="sex" value="0"> 男
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label class="radio-inline control-label">
+                            <input type="radio" id="women" name="sex" value="1"> 女
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label class="radio-inline control-label">
+                            <!-- 禁用标签 -->
+                            <input type="radio" id="why" name="sex" value="2" disabled> 未知
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="hobby" class="control-label">
+                        爱好:
+                    </label>
+                    <div class="checkbox">
+                        <label class="control-label">
+                            <input type="checkbox" name="youyong" id="youyong" value="0">游泳
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label class="control-label">
+                            <input type="checkbox" name="basketball" id="basketball" value="1">篮球
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label class="control-label">
+                            <input type="checkbox" name="run" id="run" value="2" disabled>跑步
+                        </label>
+                    </div>
+                </div>
+                <!-- 静态控件 -->
+                <div class="form-group">
+                    <label class="control-label">
+                        邮箱样式:
+                    </label>
+                    <p class="form-control-static">email@example.com</p>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="control-label">
+                        邮箱:
+                    </label>
+                    <input type="email" id="email" class="form-control" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="con" class="control-label">
+                        咨询内容
+                    </label>
+                    <select  id="con" class="form-control" multiple name="con">
+                        <option value="0">html</option>
+                        <option value="1">css</option>
+                        <option value="2">javascript</option>
+                        <option value="3">vue</option>
+                        <option value="4">python</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <h2>bootstrap表格</h2>
+        <table class="table">
+            <th>
+                <td>名称</td>
+                <td>价格</td>
+                <td></td>
+            </th>
+        </table>
+    </div>
+
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="css/bootstrap/js/bootstrap.min.js"></script>
+
+</html>

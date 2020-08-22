@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邮件发送测试</title>
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/ajaxDome.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <table class="table .table-striped">
+                <caption>邮箱发送</caption>
+                <thead>
+                  <tr>
+                    <th>名称</th>
+                    <th>输入内容</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>姓名</td>
+                    <td>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="请输入你的姓名">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>疑似药物</td>
+                    <td>
+                        <input type="text" class="form-control" id="medic-name" name="medic-name" placeholder="输入药物名称">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>不良过程反应</td>
+                    <td>
+                        <textarea name="describe" id="describe"
+                         cols="30" rows="10" 
+                         class="form-control"
+                        placeholder="请输入使用药物后的症状描述"
+                         ></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>邮箱号码</td>
+                    <td>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="请输入邮箱号码">
+                    </td>
+                  </tr>
+                </tbody>
+                <tfooter>
+                    <tr>
+                        <td><a href="javascript:" class="btn btn-success" id="submit">提交</a></td>
+                    </tr>
+                </tfooter>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    // 获取数据
+    var username = $("#username");
+    var medicName = $("#medic-name");
+    var email = $("#email");
+    var describe = $("#describe");
+    
+    // 创建容器存储数据
+    data = {};
+    // 获取下一步按钮
+    var btn = $("#submit");
+
+    btn.click(function(){
+        data.username = username.val();
+        data.medicName = medicName.val();
+        data.email = email.val();
+        data.describe = describe.val();
+        console.log(data);
+        AjaxPack({
+            url: "sendmail.php",
+            data: data,
+            method: "POST",
+            aysn: true,
+            success: function(re){
+                console.log(re);
+            }
+        })
+    })
+
+</script>
+</html>

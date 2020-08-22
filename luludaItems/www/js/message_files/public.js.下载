@@ -1,0 +1,58 @@
+$(function() {
+
+  $('.header-bottom-nav>li').each(function(i, item) {
+    $(item).on('mouseover', function() {
+      $(`.header-bottom-nav>li:eq(${i}) .home-nav-list`).stop().slideDown(200);
+    })
+    $(item).on('mouseout', function() {
+      $(`.header-bottom-nav>li:eq(${i}) .home-nav-list`).stop().slideUp(200);
+    })
+  })
+
+
+  // 底部copyright位置变换
+  function footerPosition() {
+    let bodyHeight = $('body').height();
+    let windowHeight = $(window).height();
+
+    if (bodyHeight < windowHeight) {
+      $('footer').css({
+        'position': 'absolute',
+        'bottom': '0',
+      })
+    } else {
+      $('footer').css({
+        'position': 'relative',
+      })
+    }
+  }
+
+  $(window).on('resize', function() {
+
+    footerPosition();
+  })
+  footerPosition();
+
+  var leftNavList;
+  if ($('.contact-container-left').length != 0) {
+
+    leftNavList = $('.contact-container-left').offset().top;
+  }
+
+
+  $(window).on('scroll', function() {
+    let scrollDistance = $(window).scrollTop();
+
+    if (scrollDistance > leftNavList) {
+      $('.contact-container-left').css({
+        'position': 'fixed',
+        'top': '0'
+      })
+    } else {
+      $('.contact-container-left').css({
+        'position': 'relative',
+      })
+    }
+
+  })
+})
